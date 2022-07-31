@@ -29,12 +29,13 @@ func getOpenTCP6Ports() []netstat.SockTabEntry {
 func main() {
 	tcp6Ports := getOpenTCP6Ports()
 
+	fmt.Printf("%12v %12v %12v %12v\n", "Local IP", "Local Port", "Proc Name", "Proc ID")
 	for _, p := range tcp6Ports {
-		fmt.Printf("%10v %10v", p.LocalAddr.IP,  p.LocalAddr.Port)
+		fmt.Printf("%12v %12v", p.LocalAddr.IP,  p.LocalAddr.Port)
 		if p.Process != nil {
-			fmt.Printf("%10v %10v\n", p.Process.Name, p.Process.Pid)
+			fmt.Printf(" %12v %12v\n", p.Process.Name, p.Process.Pid)
 		} else {
-			fmt.Printf("%10v %10v\n", " --- ", " --- ")
+			fmt.Printf(" %12v %12v\n", " --- ", " --- ")
 		}
 	}
 }
