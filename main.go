@@ -34,7 +34,7 @@ func main() {
 		if p.Process != nil {
 			fmt.Printf("%10v %10v\n", p.Process.Name, p.Process.Pid)
 		} else {
-			fmt.Printf("%10v %10v\n", "no name", "no pid")
+			fmt.Printf("%10v %10v\n", " --- ", " --- ")
 		}
 	}
 }
