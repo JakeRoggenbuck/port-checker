@@ -30,6 +30,7 @@ func main() {
 	tcp6Ports := getOpenTCP6Ports()
 
 	fmt.Printf("%12v %12v %12v %12v\n", "Local IP", "Local Port", "Proc Name", "Proc ID")
+	fmt.Printf("%12v %12v %12v %12v\n", "--------", "----------", "---------", "-------")
 	for _, p := range tcp6Ports {
 		fmt.Printf("%12v %12v", p.LocalAddr.IP,  p.LocalAddr.Port)
 		if p.Process != nil {
