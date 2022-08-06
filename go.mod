@@ -1,4 +1,4 @@
-module port-checker
+module github.com/jakeroggenbuck/port-checker
 
 go 1.18
 
