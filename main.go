@@ -28,12 +28,11 @@ func getOpenTCP6Ports() []netstat.SockTabEntry {
 	return tcpall
 }
 
-func single_run() {
-	tcp6Ports := getOpenTCP6Ports()
+func single_run(ports []netstat.SockTabEntry) {
 
 	fmt.Printf("%12v %12v %12v %12v\n", "Local IP", "Local Port", "Proc Name", "Proc ID")
 	fmt.Printf("%12v %12v %12v %12v\n", "--------", "----------", "---------", "-------")
-	for _, p := range tcp6Ports {
+	for _, p := range ports {
 		fmt.Printf("%12v %12v", p.LocalAddr.IP, p.LocalAddr.Port)
 		if p.Process != nil {
 			fmt.Printf(" %12v %12v\n", p.Process.Name, p.Process.Pid)
@@ -56,11 +55,13 @@ func main() {
 
 	if watch {
 		for {
+			tcp6Ports := getOpenTCP6Ports()
 			clear_screen()
-			single_run()
+			single_run(tcp6Ports)
 			time.Sleep(seconds * time.Second)
 		}
 	} else {
-		single_run()
+		tcp6Ports := getOpenTCP6Ports()
+		single_run(tcp6Ports)
 	}
 }
