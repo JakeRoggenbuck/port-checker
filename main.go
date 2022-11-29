@@ -57,11 +57,26 @@ func main() {
 
 	seconds_dur := time.Duration(seconds)
 
+	dot_count := 0
 	if watch {
 		for {
 			tcp6Ports := getOpenTCP6Ports()
 			clear_screen()
 			single_run(tcp6Ports)
+
+			// Print dots to show updates
+			x := 0
+			fmt.Print("\nRunning")
+			for x < dot_count {
+				fmt.Print(".")
+				x += 1
+			}
+			if dot_count < 4 {
+				dot_count += 1
+			} else {
+				dot_count = 0
+			}
+
 			time.Sleep(seconds_dur * time.Second)
 		}
 	} else {
