@@ -56,9 +56,9 @@ func main() {
 
 	if watch {
 		for {
+			clear_screen()
 			single_run()
 			time.Sleep(seconds * time.Second)
-			clear_screen()
 		}
 	} else {
 		single_run()
