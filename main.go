@@ -47,18 +47,22 @@ func clear_screen() {
 }
 
 func main() {
-	var seconds time.Duration = 2
+	var seconds int
+	flag.IntVar(&seconds, "seconds", 2, "update delay")
 
 	var watch bool
 	flag.BoolVar(&watch, "watch", false, "update view in watch mode")
+
 	flag.Parse()
+
+	seconds_dur := time.Duration(seconds)
 
 	if watch {
 		for {
 			tcp6Ports := getOpenTCP6Ports()
 			clear_screen()
 			single_run(tcp6Ports)
-			time.Sleep(seconds * time.Second)
+			time.Sleep(seconds_dur * time.Second)
 		}
 	} else {
 		tcp6Ports := getOpenTCP6Ports()
